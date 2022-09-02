@@ -7,17 +7,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="app_toKML" />
         <module name="jPreferences" />
         <module name="app_ilter_R2020" />
-        <module name="app_ilter_9914" />
+        <module name="app_ilter_9914-v2" />
         <module name="jFxTemplate" />
         <module name="app_ilter_9914-R2020" />
-        <module name="app_ilter_R2020_2" />
-        <module name="app_ilter_Detection" />
-        <module name="app_ilter_9914-v2" />
-        <module name="jyoutubedownloader" />
-        <module name="app_toKML" />
         <module name="jparatica" />
+        <module name="app_ilter_Detection" />
+        <module name="app_ilter_9914" />
+        <module name="app_ilter_R2020_2" />
+        <module name="jyoutubedownloader" />
       </profile>
     </annotationProcessing>
   </component>

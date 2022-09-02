@@ -15,5 +15,7 @@ This application allows applications to store and retrieve user and system prefe
 # Usage
 
 java -jar "jPreferences-1.0-shaded.jar" string app.description  "any description"
+
 java -jar "jPreferences-1.0-shaded.jar" int app.type 1
+
 java -jar "jPreferences-1.0-shaded.jar" boolean app.installed true
