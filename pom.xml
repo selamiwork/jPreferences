@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.est</groupId>
+    <artifactId>jPreferences</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <com.squareup.retrofit2.version>2.4.0</com.squareup.retrofit2.version> <!-- binance pom -->
+        <chartfx.javafx.version>8.1.5</chartfx.javafx.version>
+    </properties>
+
+    <dependencies>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>1.7.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <shadedArtifactAttached>true</shadedArtifactAttached>
+                    <shadedClassifierName>shaded</shadedClassifierName>
+                    <transformers>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <mainClass>com.est.pref.App</mainClass>
+                        </transformer>
+                    </transformers>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.akathist.maven.plugins.launch4j</groupId>
+                <artifactId>launch4j-maven-plugin</artifactId>
+                <version>1.7.25</version>
+                <executions>
+                    <execution>
+                        <id>l4j-clui</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>launch4j</goal>
+                        </goals>
+                        <configuration>
+                            <!-- <headerType>gui|console|jniGui32|jniConsole32</headerType> -->
+                            <!-- gui	        Launcher = javaw -->
+                            <!-- console	    Launcher = java -->
+                            <!-- jniGui32	    Launcher = launch4j -->
+                            <!-- jniConsole32 	Launcher = launch4j -->
+                            <!-- <dontWrapJar>false</dontWrapJar> -->
+                            <headerType>console</headerType>
+                            <outfile>target/${project.artifactId}-${project.version}.exe</outfile>
+                            <jar>${project.build.directory}/${project.artifactId}-${project.version}-shaded.jar</jar>
+                            <errTitle>encc</errTitle>
+                            <classPath>
+                                <mainClass>com.est.pref.App</mainClass>
+                                <addDependencies>true</addDependencies>
+                                <preCp>anything</preCp>
+                            </classPath>
+                            <icon>src/main/resources/icons/icons8_candle_sticks_100px.ico</icon>
+                            <jre>
+                                <minVersion>1.8.0</minVersion>
+                                <!--Not sure what these opts are for -->
+                                <opts>
+                                    <opt>-Djava.endorsed.dirs=./endorsed</opt>
+                                </opts>
+                            </jre>
+                            <versionInfo>
+                                <fileVersion>0.0.1.0</fileVersion>
+                                <txtFileVersion>0.0.1.0</txtFileVersion>
+                                <fileDescription>${project.name}</fileDescription>
+                                <copyright>${project.groupId}</copyright>
+                                <productVersion>0.0.1.0</productVersion>
+                                <txtProductVersion>${project.version}</txtProductVersion>
+                                <productName>${project.artifactId}</productName>
+                                <originalFilename>${project.artifactId}-${project.version}.exe</originalFilename>
+                                <!-- internalName is mandatory -->
+                                <internalName>${project.artifactId}-${project.version}</internalName>
+                            </versionInfo>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
