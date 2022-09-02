@@ -34,34 +34,11 @@ public class App {
         }
     }
 
-    public static int getPrefAppMainType() {
-        int value = getPreferences().getInt("app.main.type.ilter", 0);
-        return value;
-    }
-
-    public static String getPrefAppMainFxml() {
-        String value = getPreferences().get("app.main.fxml.Ilter", "");
-        return value;
-    }
-
-    public static boolean getPrefLoginEnable() {
-        boolean value = getPreferences().getBoolean("serializer.system.login.", true);
-        return value;
-    }
-
-
-
     /**
      * @param args the command line arguments
      */
     public static void main(final String[] args) {
 
-        System.out.println("getPrefAppMainType = " + getPrefAppMainType());
-        System.out.println("getPrefAppMainFxml() = " + getPrefAppMainFxml());
-        //System.out.println("getPrefLoginEnable() = " + getPrefLoginEnable());
-        for(String arg : args){
-            System.out.println("arg = " + arg);
-        }
         try {
             DataType dataType = DataType.parse(args[0]);
             switch (dataType){
